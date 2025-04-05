@@ -7,7 +7,12 @@
 Redis không chính thức hỗ trợ Windows, nhưng bạn có thể sử dụng một trong các phương pháp dưới đây:
 
 ### A. Cài Đặt Redis qua WSL (Windows Subsystem for Linux)
-
+### **Cài WSL nếu chưa có** (Windows Subsystem for Linux):
+   - Mở **PowerShell** dưới quyền quản trị và chạy lệnh sau để bật WSL:
+     ```powershell
+     wsl --install
+     ```
+   - Lệnh trên sẽ tự động cài đặt WSL và yêu cầu khởi động lại máy tính. Sau khi máy tính khởi động lại, bạn sẽ có thể cài đặt các bản phân phối Linux như Ubuntu.
 1. **Cài WSL** (Windows Subsystem for Linux) từ **Microsoft Store**:
     - Truy cập [Windows Subsystem for Linux](https://aka.ms/wslstore) và cài đặt Ubuntu.
 
