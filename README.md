@@ -72,3 +72,76 @@ Redis không chính thức hỗ trợ Windows, nhưng bạn có thể sử dụn
 
 ```bash
 redis-cli ping
+```
+
+## 2. Sử Dụng Redis trong Spring Boot
+
+### ⚙️ Thêm Dependencies vào `pom.xml`
+
+Để sử dụng Redis trong Spring Boot, bạn cần thêm các dependencies sau vào file `pom.xml`:
+
+```xml
+<!-- Spring Boot Starter for Redis Data -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+
+<!-- Spring Boot Starter for Caching -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+
+<!-- Apache Commons Pool2 for Redis connection pooling -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+</dependency>
+```
+
+Sau khi thêm, hãy cập nhật Maven project của bạn.
+
+### 🔧 Cấu Hình Redis trong `application.properties`
+
+Thêm các cấu hình sau vào file `application.properties` (hoặc `application.yml`):
+
+```properties
+# Redis Server Host
+spring.redis.host=localhost
+# Redis Server Port (mặc định là 6379)
+spring.redis.port=6379
+# Redis Password (nếu có)
+# spring.redis.password=your_password
+
+# Optional: Cấu hình Lettuce connection pool (nếu dùng Lettuce)
+spring.redis.lettuce.pool.max-active=8
+spring.redis.lettuce.pool.max-idle=8
+spring.redis.lettuce.pool.min-idle=0
+spring.redis.lettuce.pool.max-wait=-1ms # Thời gian chờ tối đa để lấy connection
+```
+
+### ✨ Sử Dụng Redis Cache trong Spring Boot
+
+1.  **Bật Caching**:
+    Thêm annotation `@EnableCaching` vào lớp Application chính của bạn:
+
+    ```java
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+    import org.springframework.cache.annotation.EnableCaching;
+
+    @SpringBootApplication
+    @EnableCaching // Bật tính năng caching
+    public class YourApplication {
+
+        public static void main(String[] args) {
+            SpringApplication.run(YourApplication.class, args);
+        }
+    }
+    ```
+
+2.  **Các Mẫu Sử Dụng Cache**:
+    Các ví dụ cụ thể về cách sử dụng các annotation như `@Cacheable`, `@CachePut`, `@CacheEvict` để quản lý cache với Redis có thể được tìm thấy trong các branch tương ứng của dự án này.
+
+Với các bước trên, bạn đã tích hợp thành công Redis vào ứng dụng Spring Boot và sử dụng nó để caching, giúp cải thiện hiệu năng ứng dụng.
