@@ -1,5 +1,38 @@
 # 🚀 Hướng Dẫn Cài Đặt Redis và Sử Dụng Redis trong Spring Boot
 
+## ⚡ Redis là gì?
+
+**Redis** là một database in-memory mã nguồn mở, hoạt động như một key-value store với tốc độ truy xuất cực nhanh (dưới 1ms). Trong Spring Boot, Redis thường được sử dụng cho:
+
+1. **Caching**: Lưu trữ tạm thời dữ liệu thường xuyên truy cập
+2. **Session Management**: Quản lý phiên đăng nhập người dùng
+3. **Rate Limiting**: Giới hạn số lượng request
+4. **Message Queue**: Xử lý các tác vụ bất đồng bộ
+
+### 🔑 Các kiểu dữ liệu Redis thường dùng trong Spring Boot:
+
+1. **String**: Lưu trữ text hoặc dữ liệu nhị phân
+2. **Hash**: Lưu trữ object dạng key-value
+3. **List**: Danh sách các phần tử theo thứ tự
+4. **Set**: Tập hợp các phần tử không trùng lặp
+5. **Sorted Set**: Tập hợp có sắp xếp theo điểm số
+
+### ⚙️ Cấu hình cơ bản:
+
+- Redis server mặc định chạy trên port 6379
+- Hỗ trợ authentication qua password
+- Có thể lưu dữ liệu xuống đĩa (persistence)
+- Hỗ trợ replication (master-slave)
+
+### 🎯 Lợi ích khi sử dụng Redis trong Spring Boot:
+
+1. **Hiệu năng cao**: Truy xuất dữ liệu nhanh hơn database thông thường
+2. **Giảm tải database**: Giảm số lượng truy vấn vào database chính
+3. **Dễ mở rộng**: Hỗ trợ phân tán và scale-out
+4. **Đa dạng use case**: Có thể sử dụng cho nhiều mục đích khác nhau
+
+---
+
 ## 1. Cài Đặt Redis trên Windows
 
 ### 🧑‍💻 Cài Đặt Redis
