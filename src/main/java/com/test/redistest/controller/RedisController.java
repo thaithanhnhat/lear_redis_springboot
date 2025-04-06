@@ -1,6 +1,8 @@
 package com.test.redistest.controller;
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,19 +14,17 @@ import com.test.redistest.service.RedisService;
 @RestController
 public class RedisController {
 
-    @Autowired
-    private RedisService redisService;
+	 @Autowired
+	    private RedisService redisService;
 
-    // Endpoint để lưu dữ liệu vào Redis
-    @PostMapping("/save")
-    public String saveData(@RequestParam String key, @RequestParam String value) {
-        redisService.saveStringData(key, value);
-        return "Data saved to Redis!";
-    }
+	    @PostMapping("/save-user")
+	    public String saveUserData(@RequestParam String email, @RequestParam String otp, @RequestParam boolean verified) {
+	        redisService.saveUserVerification(email, otp, verified);
+	        return "User data saved to Redis!";
+	    }
 
-    // Endpoint để lấy dữ liệu từ Redis
-    @GetMapping("/get")
-    public String getData(@RequestParam String key) {
-        return redisService.getStringData(key);
-    }
+	    @GetMapping("/get-user")
+	    public Map<String, String> getUser(@RequestParam String email) {
+	        return redisService.getUserData(email);
+	    }
 }
