@@ -24,6 +24,49 @@
 - Có thể lưu dữ liệu xuống đĩa (persistence)
 - Hỗ trợ replication (master-slave)
 
+### 🔧 Các lệnh Redis CLI cơ bản:
+
+**Mở Redis CLI**:
+```bash
+# Kết nối tới Redis server mặc định (localhost:6379, không có mật khẩu)
+redis-cli
+
+# Kết nối tới Redis server với host và port cụ thể
+redis-cli -h host -p port
+
+# Kết nối với mật khẩu
+redis-cli -a password
+```
+
+1. **Liệt kê tất cả keys**:
+   ```bash
+   KEYS *
+   ```
+   > ⚠️ Lưu ý: Lệnh này không nên dùng trong môi trường production vì có thể ảnh hưởng đến hiệu năng.
+
+2. **Lấy giá trị của key**:
+   ```bash
+   # Lấy giá trị của key dạng string
+   GET key_name
+
+   # Lấy tất cả giá trị của hash
+   HGETALL hash_name
+   ```
+
+3. **Kiểm tra thời gian sống của key**:
+   ```bash
+   TTL key_name
+   ```
+   - Trả về số giây còn lại của key
+   - -1: key không có thời gian hết hạn
+   - -2: key không tồn tại
+
+4. **Xóa key**:
+   ```bash
+   DEL key_name
+   ```
+   - Trả về số lượng key đã xóa thành công
+
 ### 🎯 Lợi ích khi sử dụng Redis trong Spring Boot:
 
 1. **Hiệu năng cao**: Truy xuất dữ liệu nhanh hơn database thông thường
