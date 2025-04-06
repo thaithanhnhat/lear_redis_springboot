@@ -3,6 +3,7 @@ package com.test.redistest.service;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
@@ -21,6 +22,10 @@ public class RedisService {
         String redisKey = "user:" + email;
         hashOps.put(redisKey, "verified", String.valueOf(verified));
         hashOps.put(redisKey, "otp", otp);
+        
+        //expire 
+        redisTemplate.expire(redisKey, 30, TimeUnit.SECONDS);
+        
     }
 
     public Map<String, String> getUserData(String email) {
